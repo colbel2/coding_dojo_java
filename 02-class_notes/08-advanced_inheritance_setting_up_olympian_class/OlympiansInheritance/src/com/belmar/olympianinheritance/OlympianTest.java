@@ -7,17 +7,32 @@ public class OlympianTest {
 //		System.out.println("Hello World Test");
 		
 		
-		Olympian olympian1 = new Olympian();
-		Olympian olympian2 = new Olympian("Phelps", "USA");
+//		Olympian olympian1 = new Olympian();
+//		Olympian olympian2 = new Olympian("Phelps", "USA");
+//		
+//		System.out.println(olympian1.getName());
+//		System.out.println(olympian2.getName());
+//		
+//		olympian1.displayCountry();
+//		olympian2.displayCountry();
+//		
+//		olympian1.displayEnergy();
+//		olympian2.displayEnergy();
 		
-		System.out.println(olympian1.getName());
-		System.out.println(olympian2.getName());
 		
-		olympian1.displayCountry();
-		olympian2.displayCountry();
+		//Swimmers Below inherited from Olympian
+		Swimmer swimmer1 = new Swimmer();
+		Swimmer swimmer2 = new Swimmer("Phelps", "USA", 200);
+		System.out.println(swimmer1.getName());
+		System.out.println(swimmer1.getCountry());
+		System.out.println(swimmer1.getEnergyLevel());
+		System.out.println(swimmer1.getSwimSpeed());
 		
-		olympian1.displayEnergy();
-		olympian2.displayEnergy();
+		System.out.println("Swimmer 2 info below: ");
+		System.out.println(swimmer2.getName());
+		System.out.println(swimmer2.getCountry());
+		System.out.println(swimmer2.getEnergyLevel());
+		System.out.println(swimmer2.getSwimSpeed());
 	}
 
 }

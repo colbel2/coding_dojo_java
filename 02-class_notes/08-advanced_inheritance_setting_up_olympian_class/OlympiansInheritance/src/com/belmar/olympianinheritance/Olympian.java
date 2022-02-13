@@ -2,11 +2,11 @@ package com.belmar.olympianinheritance;
 
 public class Olympian {
 	//name
-	private String name;
+	protected String name;
 	//energyLevel
-	private int energyLevel=100;
+	protected int energyLevel=100;
 	//country
-	private String country;
+	protected String country;
 	
 	//constructor
 	public Olympian() {
