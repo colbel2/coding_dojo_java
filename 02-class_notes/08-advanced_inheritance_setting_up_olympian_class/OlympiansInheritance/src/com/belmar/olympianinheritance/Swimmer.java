@@ -9,7 +9,7 @@ public class Swimmer extends Olympian{
 	
 	//empty constructor
 	public Swimmer() {
-		
+		this.energyLevel=500;
 	}
 	
 	//loaded constructor
@@ -17,6 +17,7 @@ public class Swimmer extends Olympian{
 		super(nameInput, countryInput);
 		
 		this.swimSpeed = swimSpeedInput;
+		this.energyLevel = 500;
 	}
 	
 	
@@ -29,4 +30,8 @@ public class Swimmer extends Olympian{
 		this.swimSpeed = swimSpeed;
 	}
 	
+	public void swim() {
+		
+		
+	}
 }
