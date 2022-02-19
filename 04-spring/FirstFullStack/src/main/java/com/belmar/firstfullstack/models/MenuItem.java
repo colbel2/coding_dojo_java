@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="books")//this is the name of the table. Name it plural and all lowercase.
+@Table(name="dishes")//this is the name of the table. Name it plural and all lowercase.
 
 public class MenuItem {
 
@@ -38,7 +38,7 @@ public class MenuItem {
 	@Size(min=2, max=30, message = "Menu item dish must be between 2-30 characters")
 	private String dishType;
 	
-	//price
+	//price 
 	@NotNull
 	@Min(value = 1, message = "Price must be atleast $1.")
 	private double price;
