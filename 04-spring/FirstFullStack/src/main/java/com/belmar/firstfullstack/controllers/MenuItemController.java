@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.belmar.firstfullstack.models.MenuItem;
@@ -26,6 +27,16 @@ public class MenuItemController {
 		model.addAttribute("allMenuItems", allMenuItems); 
 		return "index.jsp";
 	}
+	
+	//get info about one menu item by ID
+	@RequestMapping("/menuitems/{id}")
+	public String show(@PathVariable("id") Long id, Model model) {
+		MenuItem menuItem = this.menuService.findMenuItem(id);
+		
+		model.addAttribute("menuItem", menuItem);
+		return "oneItem.jsp";
+	}
+	
 	
 	
 }
