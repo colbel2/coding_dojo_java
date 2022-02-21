@@ -1,5 +1,7 @@
 package com.belmar.loginregistration.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,11 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.belmar.loginregistration.models.Book;
 import com.belmar.loginregistration.models.LoginUser;
 import com.belmar.loginregistration.models.User;
+import com.belmar.loginregistration.services.BookService;
 import com.belmar.loginregistration.services.UserService;
 
 
@@ -24,6 +29,10 @@ public class HomeController {
      @Autowired
      private UserService userServ;
     
+     @Autowired
+     private BookService bookServ;
+     
+     
     @GetMapping("/")
     public String index(Model model) {
     
@@ -88,11 +97,12 @@ public class HomeController {
     			return "redirect:/";
     		}
     		//get the user object with the id from session using the service
-    		User loggedInUser = this.userServ.findOneUser(id);
+    		User loggedInUser = this.userServ.findUser(id);
     		
     		model.addAttribute("loggedInUser", loggedInUser);
     		
-    		
+    		List<Book> allBooks = this.bookServ.findAllBooks();
+    		model.addAttribute("allBooks", allBooks);
     		return "dashboard.jsp";
     }
     
@@ -103,5 +113,43 @@ public class HomeController {
     		return "redirect:/";
     }
     
+  //add a book
+  	@GetMapping("/book/add")
+  	public String addbook(@ModelAttribute("book") Book book) {
+  		
+  		
+  		return"addbook.jsp";
+  	}
+  	
+  	
+  	//create a book when the form is submitted
+  	@PostMapping("/book/create")
+  	public String createBook(@Valid @ModelAttribute("book")Book book, BindingResult result, HttpSession session) {
+  		
+  		if(result.hasErrors()) {
+  			return "addbook.jsp";
+  		}
+  		Long idOfLoggedInUser = (Long)session.getAttribute("user_id");
+  		
+  		User loggedInUserObj = this.userServ.findUser(idOfLoggedInUser);
+  		
+  		book.setPostedBy(loggedInUserObj);
+  		
+  		this.bookServ.createBook(book);
+  		
+  		return "redirect:/home";
+  		
+  		}
+  		
+  	
+
+  	 //get one book by id
+  	@GetMapping("/book/{id}")
+    public String showOneBook(@PathVariable("id")Long id, Model model) {
+    	Book bookObj = this.bookServ.getBook(id);
+    	model.addAttribute("bookObj", bookObj);
+    	return "onebookdetails.jsp";
+    }
+
     
 }

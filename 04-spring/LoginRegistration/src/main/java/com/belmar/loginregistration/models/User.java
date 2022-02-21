@@ -1,12 +1,15 @@
 package com.belmar.loginregistration.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -16,6 +19,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 @Entity
 @Table(name="users")
@@ -71,6 +76,12 @@ public class User {
 		this.confirm = confirm;
 	}
 	
+	//ONE TO MANY CODE BELOW WITH BOOK TABLE
+		@OneToMany(mappedBy="postedBy", fetch = FetchType.LAZY)
+		private List<Book> booksPostedBy;
+	
+	
+	
 	//getters and setters
 	public Long getId() {
 		return id;
@@ -113,6 +124,12 @@ public class User {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public List<Book> getBooksPostedBy() {
+		return booksPostedBy;
+	}
+	public void setBooksPostedBy(List<Book> booksPostedBy) {
+		this.booksPostedBy = booksPostedBy;
 	}
 	
 	

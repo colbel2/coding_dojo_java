@@ -5,11 +5,16 @@ import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import org.springframework.validation.BindingResult;
+
+
 
 import com.belmar.loginregistration.models.LoginUser;
 import com.belmar.loginregistration.models.User;
+
 import com.belmar.loginregistration.repositories.UserRepository;
+
 
 
 
@@ -84,12 +89,9 @@ public class UserService {
     }
     
     
-    //get one user by id
-    public User findOneUser(Long id) {
-    	
-    		return this.userRepo.findById(id).orElse(null);
+   //find one user
+    public User findUser(Long id) {
+    	return this.userRepo.findById(id).orElse(null);
     }
-	
-	
 
 }

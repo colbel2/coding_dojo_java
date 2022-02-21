@@ -33,7 +33,5 @@ public class LoginUser {
 		this.password = password;
 	}
     
-    // TODO - Don't forget to generate getters and setters
-    
     
 }

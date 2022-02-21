@@ -1,5 +1,5 @@
 package com.belmar.bookclub.models;
 
-public class UserLogin {
+public class LoginUser {
 
 }
