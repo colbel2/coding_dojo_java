@@ -38,10 +38,6 @@ public class Book {
 	@Size(min=2, max=50, message = "Last name must be between 3-50 characters")
 	private String authorName; // this will create a field in our table called "authorName"
 	
-	//posted by
-	@NotBlank
-	@Size(min=2, max=50, message = "Name must be between 3-50 characters")
-	private String postedName; // this will create a field in our table called "postedName"
 	
 	@NotBlank
 	@Size(min=2, max=500, message = "Description must be between 3-500 characters")
@@ -72,11 +68,9 @@ public class Book {
 	
 	
 	//loaded constructor
-	public Book(String bookName, String authorName, String postedName, String description, User postedBy) {
-		super();
+	public Book(String bookName, String authorName, String description, User postedBy) {
 		this.bookName = bookName;
 		this.authorName = authorName;
-		this.postedName = postedName;
 		this.description = description;
 		this.postedBy = postedBy;
 	}
@@ -84,7 +78,7 @@ public class Book {
 	//MANY TO ONE CODE BELOW
 	
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="user_id")
+		@JoinColumn(name="loggedInUserID")
 		private User postedBy;
 
 		
@@ -107,12 +101,7 @@ public class Book {
 		public void setAuthorName(String authorName) {
 			this.authorName = authorName;
 		}
-		public String getPostedName() {
-			return postedName;
-		}
-		public void setPostedName(String postedName) {
-			this.postedName = postedName;
-		}
+		
 		public Date getCreatedAt() {
 			return createdAt;
 		}

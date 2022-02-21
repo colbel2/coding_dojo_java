@@ -12,7 +12,7 @@ import com.belmar.loginregistration.models.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>{
 	
-	//magic jpa methods. more info on magic jpa methods https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+	
 	
 	Optional<User> findByEmail(String email);
 	

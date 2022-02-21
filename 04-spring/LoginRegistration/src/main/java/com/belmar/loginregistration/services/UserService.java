@@ -34,7 +34,7 @@ public class UserService {
     	System.out.println("we got this far");
     	
     	if(potentialUser.isPresent()) {
-    		//this means email is taken b/c it found a user that matched the email from reg form
+    		
     		result.rejectValue("email", "EmailTaken", "This Email is taken! Try again.");
     	}
 
@@ -43,11 +43,11 @@ public class UserService {
     		result.rejectValue("confirm", "NoMatchy", "Password must match Confirm Password!");
     	}
         
-        // Return null if result has errors (if theres validation errors still)
+        // Return null if result has errors
     	if(result.hasErrors()) {  
     		return null;
     	}else { //if no errors after checking all the validations, then we can create a user.
-    		//to crate a user, we must first secure their password using bcrypt then save them to the db
+    		
     		String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
     		
     		//set the user objects password to be the hashed password
@@ -69,7 +69,7 @@ public class UserService {
     		if(!potentialUser.isPresent()) {
     			result.rejectValue("email", "NotFound", "This email does not exist. Who you?");
     		}else {
-    			//else means they tried to login with an email that is found- which is good, but now we need to make sure the password matches. Since we used bcrypt to store passwords, we use bcrypt to check passwords
+    			//else means they tried to login with an email that is found
     			if(!BCrypt.checkpw(newLoginObject.getPassword(), potentialUser.get().getPassword())) {
     				 // Reject if BCrypt password match fails (create a new validation error)
     			    result.rejectValue("password", "No Matchy", "Invalid Password!");

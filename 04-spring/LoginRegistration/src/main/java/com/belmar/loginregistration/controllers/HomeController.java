@@ -25,7 +25,7 @@ import com.belmar.loginregistration.services.UserService;
 
 @Controller
 public class HomeController {
-	// Add once service is implemented:
+	
      @Autowired
      private UserService userServ;
     
@@ -37,7 +37,7 @@ public class HomeController {
     public String index(Model model) {
     
         // Bind empty User and LoginUser objects to the JSP
-        // to capture the form input
+       
         model.addAttribute("newUser", new User());
         model.addAttribute("newLogin", new LoginUser());
         return "index.jsp";
@@ -47,19 +47,17 @@ public class HomeController {
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
             BindingResult result, Model model, HttpSession session) {
         
-        // TO-DO Later -- call a register method in the service 
-    	User user = this.userServ.register(newUser, result); //pass in the user object from the from and the errors messsages (result variable) to the service to do additional logic for registration (compare password with confim password, make sure email is not duplicate, and encrypt the password if the form is valid)
-        
+       
+    	User user = this.userServ.register(newUser, result); 
         if(result.hasErrors()) {
-            // Be sure to send in the empty LoginUser before 
+         
             // re-rendering the page so the login form still has an empty object to bind to
             model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
         
-        // No errors! 
-        // TO-DO Later: Store their ID from the DB in session, 
-        // in other words, log them in.
+       
+      
         session.setAttribute("loggedInUserID", user.getId());
     
         return "redirect:/home";
@@ -69,17 +67,15 @@ public class HomeController {
     public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, 
             BindingResult result, Model model, HttpSession session) {
         
-        // Add once service is implemented:
-         User user = userServ.login(newLogin, result); //the variable user will be a user object if the validations are all good and password is correct. The User variable will be null if there are errors
+       
+         User user = userServ.login(newLogin, result); 
     
         if(result.hasErrors()) {
-            model.addAttribute("newUser", new User()); //the reg form still needs an empty object to bind to if we have errors and we re-render the log reg page
+            model.addAttribute("newUser", new User()); 
             return "index.jsp";
         }
     
-        // No errors! 
-        // TO-DO Later: Store their ID from the DB in session, 
-        // in other words, log them in.
+       
         session.setAttribute("loggedInUserID", user.getId());
     
         return "redirect:/home";
@@ -129,7 +125,7 @@ public class HomeController {
   		if(result.hasErrors()) {
   			return "addbook.jsp";
   		}
-  		Long idOfLoggedInUser = (Long)session.getAttribute("user_id");
+  		Long idOfLoggedInUser = (Long)session.getAttribute("loggedInUserID");
   		
   		User loggedInUserObj = this.userServ.findUser(idOfLoggedInUser);
   		
