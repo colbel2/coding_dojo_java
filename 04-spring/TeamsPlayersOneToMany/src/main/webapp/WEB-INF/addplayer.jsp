@@ -20,7 +20,7 @@
 
                     <h1>Welcome. Please add a player using the form below.</h1>
                     <!-- <h1>${allteams}</h1> used for testing-->
-                    <form:form action="/players/create" method="post" modelAttribute="player">
+                    <form:form action="/player/create" method="post" modelAttribute="player">
                         <div>
                             <form:label path="firstName">First Name</form:label>
                             <form:errors path="firstName" class="text-danger" />

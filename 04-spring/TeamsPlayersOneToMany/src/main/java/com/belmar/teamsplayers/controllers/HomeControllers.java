@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,6 +50,29 @@ public class HomeControllers {
 		
 		model.addAttribute("allteams",this.appService.getAllTeams());
 		return"addplayer.jsp";
+	}
+	
+	
+	//create a player when the form is submitted
+	@PostMapping("/player/create")
+	public String createPlayer(@Valid @ModelAttribute("player")Player player, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "addplayer.jsp";
+		}else {
+			this.appService.createPlayer(player);
+			return "redirect:/";
+		}
+		
+	}
+	
+	@RequestMapping("/teams/{id}")
+	public String showOneTeamDetails(@PathVariable("id")Long id, Model model) {
+		
+		Team teamToShow = this.appService.getOneTeam(id);
+		
+		model.addAttribute("teamToShow", teamToShow);
+		return"oneTeamDetails.jsp";
 	}
 	
 	
