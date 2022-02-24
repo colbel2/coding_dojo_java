@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.belmar.javaredbeltexam.models.Idea;
 import com.belmar.javaredbeltexam.models.LoginUser;
-import com.belmar.javaredbeltexam.models.Show;
 import com.belmar.javaredbeltexam.models.User;
-import com.belmar.javaredbeltexam.services.ShowService;
+import com.belmar.javaredbeltexam.services.IdeaService;
 import com.belmar.javaredbeltexam.services.UserService;
 
 
@@ -29,7 +29,7 @@ public class HomeController {
      private UserService userServ;
      
      @Autowired
-     private ShowService showServ;
+     private IdeaService ideaServ;
     
     @GetMapping("/")
     public String index(Model model) {
@@ -100,10 +100,10 @@ public class HomeController {
     		model.addAttribute("loggedInUser", loggedInUser);
     		
     		//get all the startup ideas from the service
-    		List<Show> allShows = this.showServ.findAllShows();
+    		List<Idea> allIdeas = this.ideaServ.findAllIdeas();
     		
     		//pass the list of all ideas to the template using the view model
-    		model.addAttribute("allShows",allShows);
+    		model.addAttribute("allIdeas",allIdeas);
     		
     		return "dashboard.jsp";
     }

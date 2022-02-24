@@ -49,7 +49,7 @@ public class User {
     
 
     @OneToMany(mappedBy="uploader", fetch = FetchType.LAZY)
-    private List<Show> shows;
+    private List<Idea> ideas;
     
     
     @Column(updatable=false)
@@ -123,13 +123,13 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public List<Show> getShows() {
-		return shows;
+	public List<Idea> getIdeas() {
+		return ideas;
 	}
-	public void setShows(List<Show> shows) {
-		this.shows = shows;
+	public void setIdeas(List<Idea> ideas) {
+		this.ideas = ideas;
 	}
+	
 	
 	
 	

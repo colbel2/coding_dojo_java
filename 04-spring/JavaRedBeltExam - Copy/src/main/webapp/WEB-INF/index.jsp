@@ -20,22 +20,22 @@
                 <form:form action="/register" method="post" modelAttribute="newUser">
                     <div>
                         <form:label path="userName">User Name</form:label>
-                        <form:errors path="userName" class ="text-danger"/>
+                        <form:errors path="userName"/>
                         <form:input path="userName" type="text" class= "form-control"/>
                     </div>
                     <div>
                         <form:label path="email">Email</form:label>
-                        <form:errors path="email" class ="text-danger"/>
+                        <form:errors path="email"/>
                         <form:input path="email" type="email" class= "form-control"/>
                     </div>
                     <div>
                         <form:label path="password">Password</form:label>
-                        <form:errors path="password" class ="text-danger"/>
+                        <form:errors path="password"/>
                         <form:input path="password" type="password" class= "form-control"/>
                     </div>
                     <div>
                         <form:label path="confirm">Confirm Password</form:label>
-                        <form:errors path="confirm" class ="text-danger"/>
+                        <form:errors path="confirm"/>
                         <form:input path="confirm" type="password" class= "form-control"/>
                     </div>
                     
@@ -48,12 +48,12 @@
 
                     <div>
                         <form:label path="email">Email</form:label>
-                        <form:errors path="email" class ="text-danger"/>
+                        <form:errors path="email"/>
                         <form:input path="email" type="email" class= "form-control"/>
                     </div>
                     <div>
                         <form:label path="password">Password</form:label>
-                        <form:errors path="password" class ="text-danger"/>
+                        <form:errors path="password"/>
                         <form:input path="password" type="password" class= "form-control"/>
                     </div>
                     

@@ -66,7 +66,7 @@ public class UserService {
         // Reject if NOT present
         //if the email was not found, create a custom validation error message 
     		if(!potentialUser.isPresent()) {
-    			result.rejectValue("email", "NotFound", "This email does not exist.");
+    			result.rejectValue("email", "NotFound", "This email does not exist. Who you?");
     		}else {
     			//else means they tried to login with an email that is found- which is good, but now we need to make sure the password matches. Since we used bcrypt to store passwords, we use bcrypt to check passwords
     			if(!BCrypt.checkpw(newLoginObject.getPassword(), potentialUser.get().getPassword())) {
