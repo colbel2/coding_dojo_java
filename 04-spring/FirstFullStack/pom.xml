@@ -75,6 +75,10 @@
         <version>0.4</version>
     </dependency>
 </dependencies>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e51cce762731156fb5a3ad59a18f659f3bebdbeb
 	<build>
 		<plugins>
 			<plugin>
